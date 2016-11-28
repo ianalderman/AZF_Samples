@@ -10,14 +10,6 @@ public struct LatLong {
             public double Long;
 }
 
-public class AddressEntry {
-    public string AddressLine1 {get;set;}
-    public string AddressLine2 {get;set;}
-    public string AddressLine3 {get;set;}
-    public string AddressLine4 {get;set;}
-    public string PostCode {get;set;}
-}
-
 public static void Run(CloudBlockBlob myBlob, out string outputBlob,  out string outputSbMsg, TraceWriter log)
 {
     log.Info($"Processing file:{myBlob}");
