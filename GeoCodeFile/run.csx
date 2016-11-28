@@ -45,7 +45,7 @@ public static void Run(CloudBlockBlob myBlob, out string outputBlob,  out string
 }
 
 private static LatLong GeoCodePostCode(string AddressToParse) {
-    BingMapsGeocoder geocoder = new BingMapsGeocoder("ArHjdhrHGD-Pg81_DVmagV1XF2_7n-5xvrZSLEG-UAKUXOOg-pA4TsZGglN10EJ7");
+    BingMapsGeocoder geocoder = new BingMapsGeocoder(<YOUR API CODE>);
     IEnumerable<BingAddress> addresses = geocoder.Geocode(AddressToParse);
     LatLong result = new LatLong();
     result.Lat = addresses.First().Coordinates.Latitude;
