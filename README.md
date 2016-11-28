@@ -6,4 +6,5 @@ This Azure Function will take a CSV file in the monitored Azure blob container a
 
 The sample input file for this was an extract from the UK Gov open data initiave.  It can be found in the inputfile/GeoCodeFile directory called address.csv
 
+Note you will need a Bing Maps API key for this - these are available here: https://www.microsoft.com/maps/create-a-bing-maps-key.aspx 
 
