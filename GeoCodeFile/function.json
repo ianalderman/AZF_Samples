@@ -1,4 +1,5 @@
 {
+  "source": "run.csx",
   "bindings": [
     {
       "name": "myBlob",
