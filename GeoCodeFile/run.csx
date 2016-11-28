@@ -22,7 +22,7 @@ public static void Run(CloudBlockBlob myBlob, out string outputBlob,  out string
 {
     log.Info($"Processing file:{myBlob}");
     string markedUp = string.Empty;
-    //string blobText = myBlob.DownloadText();
+
 
     using (var stream = myBlob.OpenRead())
     {
@@ -37,9 +37,7 @@ public static void Run(CloudBlockBlob myBlob, out string outputBlob,  out string
         
     }
 
-    //log.Info($"Marked Up Output:\r\n {markedUp}");
     outputBlob = markedUp;
-    log.Info($"outputBlob Path:{outputBlob}");
     string sbMsg = $"{outputBlob}";
     outputSbMsg = sbMsg;
 }
@@ -52,7 +50,3 @@ private static LatLong GeoCodePostCode(string AddressToParse) {
     result.Long = addresses.First().Coordinates.Longitude;
     return result;
 }
-/*
-public static MemoryStream GenerateStreamFromString(string value) {
-    return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
-}*/
