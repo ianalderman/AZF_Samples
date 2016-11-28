@@ -10,7 +10,7 @@ public struct LatLong {
             public double Long;
 }
 
-public static void Run(CloudBlockBlob myBlob, out string outputBlob,  out string outputSbMsg, TraceWriter log)
+public static void Run(CloudBlockBlob myBlob, out string outputBlob, TraceWriter log)
 {
     log.Info($"Processing file:{myBlob}");
     string markedUp = string.Empty;
@@ -30,8 +30,6 @@ public static void Run(CloudBlockBlob myBlob, out string outputBlob,  out string
     }
 
     outputBlob = markedUp;
-    string sbMsg = $"{outputBlob}";
-    outputSbMsg = sbMsg;
 }
 
 private static LatLong GeoCodePostCode(string AddressToParse) {

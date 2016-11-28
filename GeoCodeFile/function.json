@@ -14,14 +14,6 @@
       "path": "processed/{rand-guid}.csv",
       "connection": "egcompetldemo_STORAGE",
       "direction": "out"
-    },
-    {
-      "type": "serviceBus",
-      "name": "outputSbMsg",
-      "queueName": "outqueue",
-      "connection": "egcompetldemoSvcBus",
-      "accessRights_": "Manage",
-      "direction": "out"
     }
   ],
   "disabled": false
