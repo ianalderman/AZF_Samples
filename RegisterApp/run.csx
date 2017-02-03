@@ -1,6 +1,8 @@
 #r "Microsoft.WindowsAzure.Storage"
+#r "System.Web"
 using System;
 using System.Net;
+using System.Web;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -22,12 +24,16 @@ public class AppRegistryEntry : TableEntity
     public int TTL { get; set; }
 
     public DateTime DateLastSeen { get; set; }
+
+    public string PublicIPAddress {get; set;}
 }
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
     log.Info($"C# HTTP trigger function processed a request. RequestUri={req.RequestUri}");
 
+    string ClientIP = GetClientIp(req);
+   
     Dictionary<string, string> QueryString = GetQueryStrings(req);
 
     string TenantId, AppId, ServerName, ServerIPAddress;
@@ -47,7 +53,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     string PK = TenantId + ":" + AppId;
 
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse
-   ("DefaultEndpointsProtocol=https;AccountName=;AccountKey=");
+   ("DefaultEndpointsProtocol=https;AccountName=0202170845;AccountKey=avl9TQYc+OturXeFZzXGDsoz+08CfdZM0aaeRLdkt2aNa5J1L2QqROR5lHqdwg5qUDozt+Vi9CP/9v25chWAdw==");
 
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
@@ -60,6 +66,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     app.ServerIPAddress = ServerIPAddress;
     app.TTL = TTL;
     app.DateLastSeen = DateTime.Now;
+    app.PublicIPAddress = GetClientIp(req);
 
     TableOperation insertOperation = TableOperation.InsertOrMerge(app);
 
@@ -77,3 +84,12 @@ public static Dictionary<string, string> GetQueryStrings(this HttpRequestMessage
                           .ToDictionary(kv => kv.Key, kv=> kv.Value, StringComparer.OrdinalIgnoreCase);
         }
 
+private static string GetClientIp(this HttpRequestMessage request)
+{
+    if (request.Properties.ContainsKey("MS_HttpContext"))
+    {
+        return ((HttpContextWrapper)request.Properties["MS_HttpContext"]).Request.UserHostAddress;
+    }
+
+    return null;
+}
