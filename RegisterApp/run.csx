@@ -31,8 +31,6 @@ public class AppRegistryEntry : TableEntity
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
     log.Info($"C# HTTP trigger function processed a request. RequestUri={req.RequestUri}");
-
-    string ClientIP = GetClientIp(req);
    
     Dictionary<string, string> QueryString = GetQueryStrings(req);
 
