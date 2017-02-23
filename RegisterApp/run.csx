@@ -51,7 +51,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     string PK = TenantId + ":" + AppId;
 
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse
-   ("DefaultEndpointsProtocol=https;AccountName=0202170845;AccountKey=avl9TQYc+OturXeFZzXGDsoz+08CfdZM0aaeRLdkt2aNa5J1L2QqROR5lHqdwg5qUDozt+Vi9CP/9v25chWAdw==");
+   ("DefaultEndpointsProtocol=https;AccountName=;AccountKey=");
 
     CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
